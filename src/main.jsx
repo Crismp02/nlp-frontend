@@ -8,8 +8,9 @@ import {
 import { ChakraProvider } from '@chakra-ui/react';
 import LandingPage from './cores/landingPage/LandingPage'
 import Summary from './cores/summary/Summary';
-import Fragment from './cores/fragment/Fragment';
 import SimpleSearch from './cores/simpleSearch/SimpleSearch';
+import UploadPDF from './cores/uploadPDF/UploadPDF';
+import WorkSummary from './cores/summary/WorkSummary';
 
 const router = createBrowserRouter([
   {
@@ -21,12 +22,16 @@ const router = createBrowserRouter([
     element: <Summary/>,
   },
   {
-    path: "/fragmentSearch",
-    element: <Fragment/>
+    path: "/summary/:id",
+    element: <WorkSummary/>,
   },
   {
     path: "/simpleSearch",
     element: <SimpleSearch/>
+  },
+  {
+    path: "/uploadPDF",
+    element: <UploadPDF/>
   }
 ]);
 

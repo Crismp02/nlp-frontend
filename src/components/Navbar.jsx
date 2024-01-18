@@ -13,9 +13,6 @@ function Navbar() {
             <Link to="/summary">
             <Text marginRight="40px">Resúmenes</Text>
             </Link>
-            <Link to="/fragmentSearch">
-            <Text marginRight="40px">Consultas por fragmento</Text>
-            </Link>
             <Link to="/simpleSearch">
             <Text>Búsquedas simples</Text>
             </Link>

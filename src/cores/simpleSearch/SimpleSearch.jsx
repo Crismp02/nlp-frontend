@@ -1,9 +1,35 @@
-import React from 'react'
-import Navbar from '../../components/Navbar'
-import { Box, Button, Card, CardBody, Input, InputGroup, InputLeftElement, Text } from '@chakra-ui/react'
-import { SearchIcon } from '@chakra-ui/icons'
+import React, { useState, useEffect } from "react";
+import Navbar from "../../components/Navbar";
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Text,
+} from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
+import { searchWork } from "../../services/Works.services";
+import LoadingSpinner from "../../components/LoadinSpinner";
 
 function SimpleSearch() {
+  const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [work, setWork] = useState([]);
+  const [searchClicked, setSearchClicked] = useState(false);
+
+  const fetchSearch = async () => {
+    if (search !== "") {
+      setIsLoading(true);
+      const data = await searchWork(search);
+      setWork(data);
+      setIsLoading(false);
+    }
+    setSearchClicked(true);
+  };
+
   return (
     <>
       <Navbar />
@@ -31,17 +57,141 @@ function SimpleSearch() {
                 children={<SearchIcon color="gray.300" />}
               />
               <Input
-                placeholder="Introduce el título de una obra, autor, género o año de publicación"
+                placeholder="Buscar"
                 backgroundColor="white"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </InputGroup>
-            <Button marginTop="20px" backgroundColor="#002480" color="white">Buscar</Button>
+            <Button
+              marginTop="20px"
+              backgroundColor="#002480"
+              color="white"
+              onClick={fetchSearch}
+            >
+              Buscar
+            </Button>
             <Text color="white" marginTop="20px" fontWeight="bold">
-                Resultados:
+              Resultados:
             </Text>
-            <Box borderRadius="10px" width="100%" backgroundColor="white" marginTop="20px" height="550px" display="flex" justifyContent="center" alignItems="center">
-                Aquí se muestran los resultados de la búsqueda
-            </Box>
+            {isLoading ? (
+  <LoadingSpinner />
+) : searchClicked ? (
+  search === "" ? (
+    <Box
+                  borderRadius="10px"
+                  width="100%"
+                  backgroundColor="white"
+                  marginTop="20px"
+                  height="550px"
+                  display="flex"
+                  flexDirection="column"
+                  paddingLeft="20px"
+                  paddingTop="30px"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <Text marginTop="20px" as="i">
+                    Realiza una búsqueda
+                  </Text>
+                </Box>
+  ) : work.length === 0 ? (
+    <Box
+                  borderRadius="10px"
+                  width="100%"
+                  backgroundColor="white"
+                  marginTop="20px"
+                  height="550px"
+                  display="flex"
+                  flexDirection="column"
+                  paddingLeft="20px"
+                  paddingTop="30px"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <Text marginTop="20px" as="i">
+                    No se encontraron resultados
+                  </Text>
+                </Box>
+  ) : (
+    work.map((item, index) => (
+      <React.Fragment key={index}>
+        <Box
+          borderRadius="10px"
+          width="100%"
+          backgroundColor="white"
+          marginTop="20px"
+          height="550px"
+          display="flex"
+          flexDirection="column"
+          paddingLeft="20px"
+          paddingTop="30px"
+        >
+          <Box display="flex" flexDirection="row">
+            <Text
+              as="b"
+              fontSize="20px"
+              color="#002480"
+              marginRight="10px"
+            >
+              Obra:
+            </Text>
+            <Text fontSize="20px">{item.title}</Text>
+          </Box>
+          <Box display="flex" flexDirection="row">
+            <Text
+              as="b"
+              fontSize="20px"
+              color="#002480"
+              marginRight="10px"
+            >
+              {item.authors && item.authors.length > 1
+                ? "Autores"
+                : "Autor"}
+              :
+            </Text>
+            <Text fontSize="20px">{item.authors.join(", ")}</Text>
+          </Box>
+          <Box display="flex" flexDirection="row">
+            <Text
+              as="b"
+              fontSize="20px"
+              color="#002480"
+              marginRight="10px"
+            >
+              Género:
+            </Text>
+            <Text fontSize="20px">{item.genre}</Text>
+          </Box>
+          <Box display="flex" flexDirection="row">
+            <Text
+              as="b"
+              fontSize="20px"
+              color="#002480"
+              marginRight="10px"
+            >
+              Descripción:
+            </Text>
+            <Text fontSize="20px">
+    {item.description === "" ? "No está disponible" : item.description}
+  </Text>
+          </Box>
+          <Box display="flex" flexDirection="row">
+            <Text
+              as="b"
+              fontSize="20px"
+              color="#002480"
+              marginRight="10px"
+            >
+              Idioma original:
+            </Text>
+            <Text fontSize="20px">{item.original_language}</Text>
+          </Box>
+        </Box>
+      </React.Fragment>
+    ))
+  )
+) : null}
           </CardBody>
         </Card>
       </Box>
@@ -49,4 +199,4 @@ function SimpleSearch() {
   );
 }
 
-export default SimpleSearch
+export default SimpleSearch;

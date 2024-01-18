@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Card, CardBody, Text, Image } from "@chakra-ui/react";
 import searchpln1 from "../../images/searchpln1.png";
-import booknlp from "../../images/booknlp.png";
 import searchnlp from "../../images/searchnlp.png";
 import { Link } from "react-router-dom";
 
@@ -11,7 +10,7 @@ function Options() {
       <Card
         backgroundColor="#D9AD00"
         marginTop="20px"
-        width="40vw"
+        width="50%"
         borderRadius="10px"
       >
         <CardBody display="flex" flexDirection="row" alignItems="center">
@@ -43,44 +42,9 @@ function Options() {
         </CardBody>
       </Card>
       <Card
-        backgroundColor="#006400"
-        marginTop="20px"
-        width="40vw"
-        borderRadius="10px"
-      >
-        <CardBody display="flex" flexDirection="row" alignItems="center">
-          <Image src={booknlp} height="230px" marginRight="20px" />
-          <Box display="flex" flexDirection="column">
-            <Link to="/fragmentSearch">
-              <Box
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                style={{ height: "100%" }}
-              >
-                <Text as="b" fontSize="30px" color="white">
-                  Consulta por fragmento
-                </Text>
-              </Box>
-            </Link>
-            <Text textAlign="center" color="white">
-              ¿No sabes de qué obra es ese fragmento que te acabas de encontrar?
-              ¿No tienes tiempo para buscarlo? ¡Consulta por fragmento es la
-              solución perfecta para ti!
-            </Text>
-            <Text textAlign="center" marginTop="14px" color="white">
-              Consulta por fragmento te permite buscar obras literarias del
-              estado Bolívar a partir de un fragmento. Solo tienes que
-              introducir el fragmento en el campo de búsqueda y la plataforma
-              buscará la obra correspondiente.
-            </Text>
-          </Box>
-        </CardBody>
-      </Card>
-      <Card
         backgroundColor="#002480"
         marginTop="20px"
-        width="40vw"
+        width="50%"
         borderRadius="10px"
       >
         <CardBody display="flex" flexDirection="row" alignItems="center">
