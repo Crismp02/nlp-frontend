@@ -30,9 +30,7 @@ function Summary() {
         paddingLeft="40px"
         paddingRight="40px"
       >
-        {isLoading ? (
-        <LoadingSpinner />
-      ) : ( <> 
+        
         <Text as="b" fontSize="50px" textAlign="center" marginTop="30px">
           Resúmenes de pdf
         </Text>
@@ -47,6 +45,9 @@ function Summary() {
                 Obras disponibles para resumir:
             </Text>
             <Box borderRadius="10px" width="100%" backgroundColor="white" marginTop="20px" height="550px" display="flex" flexDirection="column" paddingRight="20px" paddingLeft="20px">
+            {isLoading ? (
+        <LoadingSpinner />
+      ) : ( <> 
             <Text as="b" fontSize="20px" marginTop="20px" paddingBottom="20px" borderBottom="2px" color="#002480">
   <Link to={`/summary/${works[0]?.id}`}>
     {works[0]?.title}
@@ -72,10 +73,11 @@ function Summary() {
     {works[4]?.title}
   </Link>
 </Text>
+</>)}
             </Box>
           </CardBody>
         </Card>
-        </>)}
+     
       </Box>
     </>
   );
