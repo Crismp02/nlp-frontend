@@ -11,6 +11,7 @@ import Summary from './cores/summary/Summary';
 import SimpleSearch from './cores/simpleSearch/SimpleSearch';
 import UploadPDF from './cores/uploadPDF/UploadPDF';
 import WorkSummary from './cores/summary/WorkSummary';
+import WorkSummary2 from './cores/summary/WorkSummary2';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: "/uploadPDF",
     element: <UploadPDF/>
+  },
+  {
+    path: "/summaryNew",
+    element: <WorkSummary2/>
   }
 ]);
 

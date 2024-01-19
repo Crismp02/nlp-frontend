@@ -1,23 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Box, Card, CardBody, Text } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
-import { getSummary, getWork, newWork } from "../../services/Works.services";
+import { newWork } from "../../services/Works.services";
 import LoadingSpinner from "../../components/LoadinSpinner";
 import Navbar from "../../components/Navbar";
 
-function WorkSummary() {
-  const { id } = useParams();
+function WorkSummary2() {
   const [isLoading, setIsLoading] = useState(true);
   const [summary, setSummary] = useState([]);
-  const [work, setWork] = useState([]);
 
   useEffect(() => {
     const fetchSummary = async () => {
-      const data = await getSummary(id);
-      const info = await getWork(id);
-      console.log(info);
+      const data = await newWork();
       setSummary(data);
-      setWork(info);
       setIsLoading(false);
     };
 
@@ -50,15 +44,6 @@ function WorkSummary() {
         ) : (
           <>
                 <Text color="white" marginTop="20px" fontWeight="bold">
-                  Obra: {work.title}
-                </Text>
-                <Text color="white" marginTop="20px" fontWeight="bold">
-                  {work.authors && work.authors.length > 1
-                    ? "Autores"
-                    : "Autor"}
-                  : {work.authors.join(", ")}
-                </Text>
-                <Text color="white" marginTop="20px" fontWeight="bold">
                   Resumen:
                 </Text>
                 <Box
@@ -86,4 +71,4 @@ function WorkSummary() {
   );
 }
 
-export default WorkSummary;
+export default WorkSummary2;

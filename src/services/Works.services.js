@@ -77,3 +77,23 @@ export const getWorks = async () => {
         return null;
       }
     }
+
+    export const newWork = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/summary`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+    
+        if (!response.ok) {
+          throw new Error('Error al obtener datos del backend');
+        }
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error(error);
+        return null;
+      }
+    }
