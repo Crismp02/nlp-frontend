@@ -37,10 +37,7 @@ function WorkSummary() {
         <Text as="b" fontSize="50px" textAlign="center" marginTop="30px">
           Resumen de la obra
         </Text>
-        {isLoading ? (
-          <LoadingSpinner />
-        ) : (
-          <>
+       
             <Card
               backgroundColor="#006400"
               marginTop="20px"
@@ -48,6 +45,10 @@ function WorkSummary() {
               borderRadius="10px"
             >
               <CardBody>
+              {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <>
                 <Text color="white" marginTop="20px" fontWeight="bold">
                   Obra: {work.title}
                 </Text>
@@ -75,10 +76,11 @@ function WorkSummary() {
                     {summary.summary}
                   </Text>
                 </Box>
+                </>
+        )}
               </CardBody>
             </Card>
-          </>
-        )}
+         
       </Box>
     </>
   );
