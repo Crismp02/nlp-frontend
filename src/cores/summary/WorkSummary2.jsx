@@ -31,41 +31,47 @@ function WorkSummary2() {
         <Text as="b" fontSize="50px" textAlign="center" marginTop="30px">
           Resumen de la obra
         </Text>
-       
-            <Card
-              backgroundColor="#006400"
-              marginTop="20px"
-              width="80vw"
-              borderRadius="10px"
-            >
-              <CardBody>
-  {isLoading ? (
-    <LoadingSpinner />
-  ) : (
-    <>
-      <Text color="white" marginTop="20px" fontWeight="bold">
-        Resumen:
-      </Text>
-      <Box
-        borderRadius="10px"
-        width="100%"
-        backgroundColor="white"
-        marginTop="20px"
-        height="550px"
-        display="flex"
-        flexDirection="column"
-        paddingRight="20px"
-        paddingLeft="20px"
-      >
-        <Text marginTop="10px" overflow="scroll">
-          {!summary || summary.summary === null ? "El resumen de esta obra no se encuentra disponible" : summary.summary}
-        </Text>
-      </Box>
-    </>
-  )}
-</CardBody>
-            </Card>
-         
+
+        <Card
+          backgroundColor="#006400"
+          marginTop="20px"
+          width="80vw"
+          borderRadius="10px"
+        >
+          <CardBody>
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : (
+              <>
+                <Text color="white" marginTop="20px" fontWeight="bold">
+                  Resumen:
+                </Text>
+                <Box
+                  borderRadius="10px"
+                  width="100%"
+                  backgroundColor="white"
+                  marginTop="20px"
+                  height="550px"
+                  display="flex"
+                  flexDirection="column"
+                  paddingRight="20px"
+                  paddingLeft="20px"
+                >
+                  <Text
+                    marginTop="10px"
+                    overflow={
+                      !summary || summary.summary === null ? "hidden" : "scroll"
+                    }
+                  >
+                    {!summary || summary.summary === null
+                      ? "El resumen de esta obra no se encuentra disponible"
+                      : summary.summary}
+                  </Text>
+                </Box>
+              </>
+            )}
+          </CardBody>
+        </Card>
       </Box>
     </>
   );

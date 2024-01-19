@@ -121,11 +121,10 @@ function SimpleSearch() {
           width="100%"
           backgroundColor="white"
           marginTop="20px"
-          height="550px"
           display="flex"
           flexDirection="column"
           paddingLeft="20px"
-          paddingTop="30px"
+          paddingY="30px"
         >
           <Box display="flex" flexDirection="row">
             <Text
